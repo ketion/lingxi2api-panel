@@ -62,21 +62,21 @@ go build -o lingxi2api.exe ./cmd/server
 启动成功会打印：
 
 ```
-lingxi2api listening on :7864 (api_key=true)，管理面板 http://127.0.0.1:7864/panel/
+lingxi2api listening on :6789 (api_key=true)，管理面板 http://127.0.0.1:6789/panel/
 ```
 
-默认监听 `:7864`，API 密钥取 `config.json` 里的 `api_key`（示例为
+默认监听 `:6789`，API 密钥取 `config.json` 里的 `api_key`（示例为
 `sk-lingxi-change-me`，**务必改成自己的**）。
 
 ### 添加第一个账号
 
-打开 `http://127.0.0.1:7864/panel/`（Bearer = `config.api_key`），点「添加账号」，
+打开 `http://127.0.0.1:6789/panel/`（Bearer = `config.api_key`），点「添加账号」，
 任选一种方式（详见[添加账号](#添加账号)）。
 
 ### 调用
 
 ```bash
-curl http://127.0.0.1:7864/v1/chat/completions \
+curl http://127.0.0.1:6789/v1/chat/completions \
   -H "Authorization: Bearer sk-lingxi-change-me" \
   -H "Content-Type: application/json" \
   -d '{"model":"deepseek-v4.1-flash","messages":[{"role":"user","content":"你好"}],"stream":true}'
@@ -86,7 +86,7 @@ curl http://127.0.0.1:7864/v1/chat/completions \
 
 ```python
 from openai import OpenAI
-client = OpenAI(base_url="http://127.0.0.1:7864/v1", api_key="sk-lingxi-change-me")
+client = OpenAI(base_url="http://127.0.0.1:6789/v1", api_key="sk-lingxi-change-me")
 client.chat.completions.create(model="deepseek-v4.1-flash", messages=[{"role":"user","content":"你好"}])
 ```
 
@@ -161,7 +161,7 @@ mimo-v2.6-pro · GLM-5.3-Flash · GLM-5.3 · kimi-k3 · …
 
 ## 管理面板
 
-`http://127.0.0.1:7864/panel/`，Bearer = `config.api_key`。
+`http://127.0.0.1:6789/panel/`，Bearer = `config.api_key`。
 
 | 视图 | 内容 |
 |---|---|
@@ -182,7 +182,7 @@ mimo-v2.6-pro · GLM-5.3-Flash · GLM-5.3 · kimi-k3 · …
 
 ```jsonc
 {
-  "listen": ":7864",
+  "listen": ":6789",
   "api_key": "sk-lingxi-change-me",   // 网关鉴权密钥，务必修改
   "auth_dir": "./auths",              // 账号文件目录
 
